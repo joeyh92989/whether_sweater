@@ -29,7 +29,7 @@ class Forecast
 
     args.each do |hash|
       day = {}
-      day[:datetime] = DateTime.strptime((hash[:dt]).to_s, '%s').strftime("%m/%d/%Y")
+      day[:datetime] = DateTime.strptime((hash[:dt]).to_s, '%s').strftime('%m/%d/%Y')
       day[:sunrise] = DateTime.strptime((hash[:sunrise]).to_s, '%s')
       day[:sunset] = DateTime.strptime((hash[:sunset]).to_s, '%s')
       day[:max_temp] = hash[:temp][:max]
@@ -46,7 +46,7 @@ class Forecast
 
     args.each do |hash|
       hour = {}
-      hour[:datetime] = DateTime.strptime((hash[:dt]).to_s, '%s').strftime("%I:%M:%S %p")
+      hour[:datetime] = DateTime.strptime((hash[:dt]).to_s, '%s').strftime('%I:%M:%S %p')
       hour[:temperature] = hash[:temp]
       hour[:conditions] = hash[:weather][0][:description]
       hour[:icon] = hash[:weather][0][:icon]
