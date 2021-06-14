@@ -1,5 +1,5 @@
 class BookFacade
-  def self.book_search(location, quantity)
+  def self.book_search(location, quantity = 100)
     coord = LatLong.new(MapQuestService.coordinates(location))
     forecast = Forecast.new(OpenWeatherService.one_call(coord.lat, coord.long))
     books= OpenLibraryService.search(location)
@@ -7,7 +7,7 @@ class BookFacade
     Books.new(coord,forecast,book_array, books[:numFound])
   end
 
-  def self.create_book_array(books, quantity = 100)
+  def self.create_book_array(books, quantity)
      collection = books[:docs].map do |book|
       {
         isbn: book[:isbn],
