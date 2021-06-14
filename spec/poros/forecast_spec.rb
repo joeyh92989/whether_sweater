@@ -63,14 +63,36 @@ RSpec.describe 'Forecast' do
       rain","icon":"10d"}],"clouds":98,"pop":0.92,"rain":8.52,"uvi":11},{"dt":1624215600,"sunrise":1624188720,"sunset":1624242668,"moonrise":1624226340,"moonset":1624177680,"moon_phase":0.34,"temp":{"day":90.79,"min":65.79,"max":90.79,"night":76.19,"eve":85.64,"morn":65.79},"feels_like":{"day":86.63,"night":75.11,"eve":82.65,"morn":64.27},"pressure":1004,"humidity":14,"dew_point":35.4,"wind_speed":21.9,"wind_deg":51,"wind_gust":21.14,"weather":[{"id":800,"main":"Clear","description":"clear
       sky","icon":"01d"}],"clouds":0,"pop":0.35,"uvi":11}]}
       weather = Forecast.new(weather_info)
-      binding.pry
+      
+      expect(weather.current_weather).to be_a(Hash)
+      expect(weather.current_weather).to have_key(:datetime)
+      expect(weather.current_weather).to have_key(:sunrise)
+      expect(weather.current_weather).to have_key(:sunset)
+      expect(weather.current_weather).to have_key(:temperature)
+      expect(weather.current_weather).to have_key(:feels_like)
+      expect(weather.current_weather).to have_key(:humidity)
+      expect(weather.current_weather).to have_key(:uvi)
+      expect(weather.current_weather).to have_key(:visibility)
+      expect(weather.current_weather).to have_key(:conditions)
+      expect(weather.current_weather).to have_key(:icon)
       expect(weather.current_weather).to be_a(Hash)
       expect(weather.daily_weather).to be_a(Array)
       expect(weather.daily_weather.count).to eq(5)
       expect(weather.daily_weather.first).to be_a(Hash)
+      expect(weather.daily_weather.first).to have_key(:datetime)
+      expect(weather.daily_weather.first).to have_key(:sunrise)
+      expect(weather.daily_weather.first).to have_key(:sunset)
+      expect(weather.daily_weather.first).to have_key(:max_temp)
+      expect(weather.daily_weather.first).to have_key(:min_temp)
+      expect(weather.daily_weather.first).to have_key(:conditions)
+      expect(weather.daily_weather.first).to have_key(:icon)
       expect(weather.hourly_weather).to be_a(Array)
       expect(weather.hourly_weather.count).to eq(8)
-      expect(weather.daily_weather.first).to be_a(Hash)
+      expect(weather.hourly_weather.first).to be_a(Hash)
+      expect(weather.hourly_weather.first).to have_key(:datetime)
+      expect(weather.hourly_weather.first).to have_key(:temperature)
+      expect(weather.hourly_weather.first).to have_key(:conditions)
+      expect(weather.hourly_weather.first).to have_key(:icon)
     end
   end
 end

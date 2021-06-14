@@ -16,7 +16,7 @@ class Forecast
     current_weather[:sunset] = DateTime.strptime((args[:sunset]).to_s, '%s')
     current_weather[:temperature] = args[:temp]
     current_weather[:feels_like] = args[:feels_like]
-    current_weather[:hunmidity] = args[:humidity]
+    current_weather[:humidity] = args[:humidity]
     current_weather[:uvi] = args[:uvi]
     current_weather[:visibility] = args[:visibility]
     current_weather[:conditions] = args[:weather][0][:description]
