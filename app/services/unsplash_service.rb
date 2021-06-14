@@ -12,6 +12,6 @@ class UnsplashService
     JSON.parse(response.body, symbolize_names: true)
   end
 end
-#attr unsplash
-#attribute link to photographers link
-#attribute
+# attr unsplash
+# attribute link to photographers link
+# attribute
