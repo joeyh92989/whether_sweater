@@ -5,10 +5,12 @@ class Books
               :books
 
   def initialize(coordinates, forecast, book_collection, total_books)
-    binding.pry
     @destination = coordinates.destination
-    @forecast = nil
-    @total_books_found = nil
-    @books = nil
+    @forecast = {
+      summary: forecast.current_weather[:conditions],
+      temperature: forecast.current_weather[:temperature]
+    }
+    @total_books_found = total_books
+    @books = book_collection
   end
 end
