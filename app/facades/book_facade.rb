@@ -6,16 +6,17 @@ class BookFacade
     binding.pry
     books= OpenLibraryService.search(location)
     binding.pry
+    book_array = BookFacade.create_book_array(books)
   end
 
-  def self.create_book_array(books)
-    binding.pry
-    books[:docs].map do |book|
+  def self.create_book_array(books, quantity = 100)
+     collection = books[:docs].map do |book|
       {
         isbn: book[:isbn],
         title: book[:title],
         publisher: book[:publisher]
       }
     end
+    collection.take(quantity)
   end
 end

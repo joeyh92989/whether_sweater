@@ -10,8 +10,8 @@ RSpec.describe 'Book Facade' do
   it 'can return a collection of books with specific criteria', :vcr do
     books = OpenLibraryService.search("denver,co")
     array = BookFacade.create_book_array(books)
-    binding.pry
     expect(array).to be_a(Array)
+    expect(array.count).to eq(100)
     expect(array.first.count).to eq(3)
     expect(array.first).to be_a(Hash)
     expect(array.first).to have_key(:isbn)
@@ -20,5 +20,11 @@ RSpec.describe 'Book Facade' do
     expect(array.first[:title]).to be_a(String)
     expect(array.first).to have_key(:publisher)
     expect(array.first[:publisher]).to be_a(Array)
+  end
+  it 'can return a collection of books based on specified quantity', :vcr do
+    books = OpenLibraryService.search("denver,co")
+    array = BookFacade.create_book_array(books, 5)
+    expect(array).to be_a(Array)
+    expect(array.count).to eq(5)
   end
 end
