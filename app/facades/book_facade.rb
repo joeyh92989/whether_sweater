@@ -1,12 +1,10 @@
 class BookFacade
-  def self.book_search(location)
+  def self.book_search(location, quantity)
     coord = LatLong.new(MapQuestService.coordinates(location))
-    binding.pry
     forecast = Forecast.new(OpenWeatherService.one_call(coord.lat, coord.long))
-    binding.pry
     books= OpenLibraryService.search(location)
-    binding.pry
-    book_array = BookFacade.create_book_array(books)
+    book_array = BookFacade.create_book_array(books, quantity)
+    Books.new(coord,forecast,book_array, books[:numFound])
   end
 
   def self.create_book_array(books, quantity = 100)
