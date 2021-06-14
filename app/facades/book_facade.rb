@@ -1,16 +1,21 @@
 class BookFacade
-  def self.book_search(location, quantity = 100)
+  def self.book_search(location, quantity = nil)
+    if quantity.nil? || (quantity <= 0)
+      quantity = 100
+    else
+      quantity
+    end
     coord = LatLong.new(MapQuestService.coordinates(location))
     forecast = Forecast.new(OpenWeatherService.one_call(coord.lat, coord.long))
-    books= OpenLibraryService.search(location)
+    books = OpenLibraryService.search(location)
     book_array = BookFacade.create_book_array(books, quantity)
-    Books.new(coord,forecast,book_array, books[:numFound])
+    Books.new(coord, forecast, book_array, books[:numFound])
   rescue NoMethodError
-    {errors: "No results found for location, please use another location"}
+    { errors: 'No results found for location, please use another location' }
   end
 
   def self.create_book_array(books, quantity)
-     collection = books[:docs].map do |book|
+    collection = books[:docs].map do |book|
       {
         isbn: book[:isbn],
         title: book[:title],

@@ -19,6 +19,11 @@ describe 'Books Search' do
         expect(books[:data][:attributes][:books].count).to eq(5)
 
       end
+      it 'returns at most 100 books if no quantity is provided', :vcr do 
+        get '/api/v1/book-search', params: {location:"Denver,Co"}
+        books = JSON.parse(response.body, symbolize_names: true)
+        expect(books[:data][:attributes][:books].count).to eq(100)
+      end
     end
     describe 'Sad Path' do
       it 'sends an error when an invalid location is sent', :vcr do
