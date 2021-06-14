@@ -8,6 +8,7 @@ class OpenWeatherService
                           lat: lat,
                           lon: long,
                           exclude: 'minutely,alerts',
+                          units: 'imperial',
                           appid: ENV['open_weather']
                         })
     JSON.parse(response.body, symbolize_names: true)
