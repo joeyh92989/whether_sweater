@@ -21,14 +21,14 @@ describe 'Books Search' do
       end
     end
     describe 'Sad Path' do
-      xit 'sends an error when an invalid location is sent', :vcr do
+      it 'sends an error when an invalid location is sent', :vcr do
 
-        get '/api/v1/forecast', params: {location:"" }
-        forecast = JSON.parse(response.body, symbolize_names: true)
+        get '/api/v1/book-search', params: {location:"", quantity: 1 }
+        books = JSON.parse(response.body, symbolize_names: true)
         expect(response.status).to eq(404)
-        expect(forecast).to be_a Hash
-        expect(forecast).to have_key(:errors)
-        expect(forecast[:errors]).to eq("Location not found")
+        expect(books).to be_a Hash
+        expect(books).to have_key(:errors)
+        expect(books[:errors]).to eq("No results found for location, please use another location")
       end
     end
   end

@@ -5,6 +5,8 @@ class BookFacade
     books= OpenLibraryService.search(location)
     book_array = BookFacade.create_book_array(books, quantity)
     Books.new(coord,forecast,book_array, books[:numFound])
+  rescue NoMethodError
+    {errors: "No results found for location, please use another location"}
   end
 
   def self.create_book_array(books, quantity)
