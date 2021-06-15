@@ -32,7 +32,7 @@ describe 'session Create' do
         expect(response.status).to eq(404)
         expect(user).to be_a Hash
         expect(user).to have_key(:errors)
-        expect(user[:errors].first).to eq('Password or email incorrect')
+        expect(user[:errors]).to eq('Password or email incorrect')
       end
     end
   end
