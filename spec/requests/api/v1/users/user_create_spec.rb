@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'User Create' do
   describe 'User Create' do
     describe 'Happy Path' do
-      it 'send a weather forecast when sent a valid location', :vcr do
+      it 'send a user when succesful creation occurs', :vcr do
 
         post '/api/v1/users', params: {
           "email": "whatever@example.com",
