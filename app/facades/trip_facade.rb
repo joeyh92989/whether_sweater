@@ -5,7 +5,6 @@ class TripFacade
       time_clean = 'impossible'
       weather = {}
     else
-      binding.pry
       time_clean = time[:route][:formattedTime]
       time_unix = Time.now + (time[:route][:realTime])
       weather = get_weather_at_arrival(destination, time_unix)
