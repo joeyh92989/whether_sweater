@@ -12,11 +12,6 @@ RSpec.describe 'Map Quest Service' do
         expect(results[:results].first[:locations].first[:latLng].count).to eq(2)
       end
     end
-    describe 'sad path' do
-      xit 'returns error if no location provided', :vcr do 
-        results = MapQuestService.coordinates('')
-      end
-    end
   end
   describe 'return directions' do
     describe 'happy path' do

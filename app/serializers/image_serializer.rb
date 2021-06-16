@@ -1,5 +1,5 @@
 class ImageSerializer
   include FastJsonapi::ObjectSerializer
-  set_id { nil }
+  set_id { 'null' }
   attributes :image
 end
