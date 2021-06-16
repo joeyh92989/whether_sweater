@@ -223,4 +223,4 @@ Run all tests in application with `bundle exec rspec`. When test is complete, ru
 
 ## Acknowledgments
 
-Thank you to Open Weather, Unsplash, and Mapqeust for allowing us to use your API's. Thanks Turing School of Software and Engineering for helping me come up with the idea for this application, and thank you for reading through this project!
+Thank you to Open Weather, Unsplash, and Mapquest for allowing us to use your API's. Thanks Turing School of Software and Engineering for helping me come up with the idea for this application, and thank you for reading through this project!
