@@ -4,8 +4,7 @@ describe 'Background Image' do
   describe 'Background Index' do
     describe 'Happy Path' do
       it 'send an image detail over json when a valid location is sent', :vcr do
-
-        get '/api/v1/backgrounds', params: {location:"denver,co" }
+        get '/api/v1/backgrounds', params: { location: 'denver,co' }
         background = JSON.parse(response.body, symbolize_names: true)
         expect(response).to be_successful
         expect(background[:data][:attributes].count).to eq(1)
@@ -16,6 +15,15 @@ describe 'Background Image' do
         expect(background[:data][:attributes][:image][:attribution]).to have_key(:source)
         expect(background[:data][:attributes][:image][:attribution]).to have_key(:author)
         expect(background[:data][:attributes][:image][:attribution]).to have_key(:portfolio)
+      end
+    end
+    describe 'sad Path' do
+      it 'send an error if no results found', :vcr do
+        get '/api/v1/backgrounds', params: { location: '' }
+        background = JSON.parse(response.body, symbolize_names: true)
+        expect(response.status).to eq(404)
+        expect(background).to have_key(:errors)
+        expect(background[:errors]).to be_a(String)
       end
     end
   end
