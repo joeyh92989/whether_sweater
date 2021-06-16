@@ -1,10 +1,11 @@
 class TripFacade
   def self.create_trip(origin, destination)
     time = MapQuestService.directions(origin, destination)
-    if time[:info][:statuscode] == 402
+    if time[:info][:statuscode] == 402 || time[:route][:formattedTime] == "00:00:00"
       time_clean = 'impossible'
       weather = {}
     else
+      binding.pry
       time_clean = time[:route][:formattedTime]
       time_unix = Time.now + (time[:route][:realTime])
       weather = get_weather_at_arrival(destination, time_unix)
